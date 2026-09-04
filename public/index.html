@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>VulnScan — Web Security Analyzer</title>
+  <link rel="icon" type="image/png" href="/assets/logo.png" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=JetBrains+Mono:wght@400;500;600;700&display=swap"
+    rel="stylesheet"
+  />
+  <link rel="stylesheet" href="/styles.css" />
+</head>
+<body>
+  <div class="scan-grid" aria-hidden="true"></div>
+
+  <header class="topbar">
+    <div class="brand">
+      <img src="/assets/logo.png" alt="VulnScan" class="brand-logo" />
+      <span class="brand-name">Vuln<span class="accent">Scan</span></span>
+    </div>
+    <button id="langToggle" class="lang-toggle" type="button" aria-label="Toggle language">
+      <span class="lang-option active" data-lang="es">ES</span>
+      <span class="lang-sep">/</span>
+      <span class="lang-option" data-lang="en">EN</span>
+    </button>
+  </header>
+
+  <main class="container">
+    <section class="hero">
+      <p class="hero-eyebrow" data-i18n="hero.eyebrow">análisis de superficie de ataque</p>
+      <h1 class="hero-title" data-i18n="hero.title">Escanea cualquier sitio en segundos</h1>
+      <p class="hero-subtitle" data-i18n="hero.subtitle">
+        Detecta tecnologías expuestas y verifica headers de seguridad HTTP.
+      </p>
+
+      <div class="terminal-input">
+        <span class="terminal-prompt">scan --target</span>
+        <input
+          type="url"
+          id="urlInput"
+          class="terminal-field"
+          placeholder="https://ejemplo.com"
+          data-i18n-placeholder="hero.placeholder"
+        />
+        <button id="analyzeBtn" class="scan-btn" data-i18n="hero.button">Analizar</button>
+      </div>
+      <div id="errorMsg" class="error-msg"></div>
+    </section>
+
+    <section id="loading" class="loading-panel d-none">
+      <div class="radar">
+        <div class="radar-sweep"></div>
+      </div>
+      <p data-i18n="loading.text">Escaneando objetivo, esto puede tardar unos segundos...</p>
+    </section>
+
+    <section id="results" class="results d-none">
+      <div class="results-toolbar">
+        <button id="exportJsonBtn" class="ghost-btn" data-i18n="export.json">↓ Exportar JSON</button>
+        <button id="exportPdfBtn" class="ghost-btn" data-i18n="export.pdf">↓ Exportar PDF</button>
+      </div>
+
+      <div class="panels-grid">
+        <div class="panel">
+          <h2 class="panel-title"><span class="panel-icon">◆</span><span data-i18n="panel.tech">Tecnologías detectadas</span></h2>
+          <div id="techList" class="tech-list"></div>
+        </div>
+
+        <div class="panel panel-score">
+          <h2 class="panel-title"><span class="panel-icon">◆</span><span data-i18n="panel.score">Puntaje de seguridad</span></h2>
+          <div class="score-display">
+            <span id="securityScore">0</span><span class="score-max">/100</span>
+          </div>
+          <div class="score-bar"><div id="scoreBarFill" class="score-bar-fill"></div></div>
+        </div>
+      </div>
+
+      <div class="panel panel-headers">
+        <h2 class="panel-title"><span class="panel-icon">◆</span><span data-i18n="panel.headers">Headers de seguridad</span></h2>
+        <div id="headersList" class="headers-list"></div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <span data-i18n="footer.text">VulnScan · Herramienta de análisis para portafolio</span>
+  </footer>
+
+  <script src="/app.js"></script>
+</body>
+</html>
