@@ -60,7 +60,7 @@
 
 ```bash
 # Clonar repositorio
-git clone https://github.com/tu-usuario/vulnscan.git
+git clone https://github.com/Esteban4Dev/VulnScan-Web-Security-Analyzer
 cd vulnscan
 
 # Instalar dependencias
